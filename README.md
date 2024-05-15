@@ -6,6 +6,6 @@ CelestialScript, commonly abbreviated as CS is a morden and futuristic programmi
 
 ## Contributors
 
-Frontend: @WillsDad007
+Frontend: @WillsDad007, @Bashamega
 
 Backend: @BwnnyRxbbit
