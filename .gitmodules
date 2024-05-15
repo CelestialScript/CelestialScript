@@ -1,0 +1,3 @@
+[submodule "themes/--force"]
+	path = themes/--force
+	url = https://github.com/spech66/bootstrap-bp-hugo-startpage.git
