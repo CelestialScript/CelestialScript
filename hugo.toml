@@ -1,0 +1,5 @@
+baseURL = '/'
+languageCode = 'en-us'
+title = 'CelestialScript'
+theme = 'bootstrap-bp-hugo-startpage'
+welcomeText = "CelestialScript"
