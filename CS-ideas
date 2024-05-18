@@ -1,0 +1,28 @@
+### Sihan's Ideas:
+
+My goal is to not use any english words in this language.
+_____
+
+`$("Hello, world!");`
+
+`cr number% = 9` (cr stands for create)
+
+All variables end in a '%'.
+
+```
+(number > 10)? {
+  $(number%, "is greater than 10!");
+}
+```
+
+### Adam's Ideas:
+My idea is to make the language accept both python and js syntax.
+For example some people like using {} others like to use Python's syntax which is just tabs.
+Learn more here about the differences: https://www.youtube.com/watch?v=Jld0aUQ9LZw
+So both python's code and js's code will work.
+
+Also make an package module that is light weight.
+
+
+### Will's Ideas:
+Thinking
