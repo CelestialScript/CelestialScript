@@ -1,0 +1,9 @@
+/Users/sihansmacbook/Documents/GitHub/CelestialScript-Sihan/rust/target/debug/deps/libgloo_file-2f2ee8c0ef5ed4b7.rmeta: /Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/lib.rs /Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/blob.rs /Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/file_list.rs /Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/file_reader.rs /Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/object_url.rs
+
+/Users/sihansmacbook/Documents/GitHub/CelestialScript-Sihan/rust/target/debug/deps/gloo_file-2f2ee8c0ef5ed4b7.d: /Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/lib.rs /Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/blob.rs /Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/file_list.rs /Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/file_reader.rs /Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/object_url.rs
+
+/Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/lib.rs:
+/Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/blob.rs:
+/Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/file_list.rs:
+/Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/file_reader.rs:
+/Users/sihansmacbook/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gloo-file-0.3.0/src/object_url.rs:
