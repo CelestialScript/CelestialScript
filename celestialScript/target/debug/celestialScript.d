@@ -1,0 +1,1 @@
+/workspace/CelestialScript/celestialScript/target/debug/celestialScript: /workspace/CelestialScript/celestialScript/src/interpreter.rs /workspace/CelestialScript/celestialScript/src/lexer.rs /workspace/CelestialScript/celestialScript/src/main.rs /workspace/CelestialScript/celestialScript/src/parser.rs
