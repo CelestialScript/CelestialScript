@@ -5,12 +5,9 @@ mod interpreter;
 use lexer::Lexer;
 use parser::Parser;
 use interpreter::Interpreter;
-
 fn main() {
     let input = String::from("
-        let x = 10;
-        let y = 20;
-        print x + y;
+        print 2+2;
     ");
 
     let lexer = Lexer::new(input);

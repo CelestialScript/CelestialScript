@@ -1,18 +1,19 @@
-#[derive(Debug, PartialEq)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum Token {
+    EOF,
     Let,
     Print,
     Identifier(String),
     Number(i64),
-    Plus,
     Equals,
+    Plus,
     Semicolon,
-    EOF,
 }
 
 pub struct Lexer {
     input: String,
     position: usize,
+    read_position: usize,
     current_char: Option<char>,
 }
 
@@ -21,6 +22,7 @@ impl Lexer {
         let mut lexer = Lexer {
             input,
             position: 0,
+            read_position: 0,
             current_char: None,
         };
         lexer.read_char();
@@ -28,30 +30,13 @@ impl Lexer {
     }
 
     fn read_char(&mut self) {
-        if self.position >= self.input.len() {
-            self.current_char = None;
+        self.current_char = if self.read_position >= self.input.len() {
+            None
         } else {
-            self.current_char = Some(self.input.chars().nth(self.position).unwrap());
-        }
-        self.position += 1;
-    }
-
-    pub fn next_token(&mut self) -> Token {
-        self.skip_whitespace();
-        let token = match self.current_char {
-            Some('=') => Token::Equals,
-            Some('+') => Token::Plus,
-            Some(';') => Token::Semicolon,
-            Some(c) if c.is_digit(10) => self.read_number(),
-            Some(c) if c.is_alphabetic() => self.read_identifier(),
-            Some(_) => {
-                self.read_char();
-                return self.next_token();
-            }
-            None => Token::EOF,
+            Some(self.input.as_bytes()[self.read_position] as char)
         };
-        self.read_char();
-        token
+        self.position = self.read_position;
+        self.read_position += 1;
     }
 
     fn skip_whitespace(&mut self) {
@@ -64,21 +49,8 @@ impl Lexer {
         }
     }
 
-    fn read_number(&mut self) -> Token {
-        let start_position = self.position - 1;
-        while let Some(c) = self.current_char {
-            if c.is_digit(10) {
-                self.read_char();
-            } else {
-                break;
-            }
-        }
-        let number_str: String = self.input[start_position..self.position - 1].to_string();
-        Token::Number(number_str.parse::<i64>().unwrap())
-    }
-
-    fn read_identifier(&mut self) -> Token {
-        let start_position = self.position - 1;
+    fn read_identifier(&mut self) -> String {
+        let position = self.position;
         while let Some(c) = self.current_char {
             if c.is_alphanumeric() {
                 self.read_char();
@@ -86,11 +58,46 @@ impl Lexer {
                 break;
             }
         }
-        let identifier_str: String = self.input[start_position..self.position - 1].to_string();
-        match identifier_str.as_str() {
-            "let" => Token::Let,
-            "print" => Token::Print,
-            _ => Token::Identifier(identifier_str),
+        self.input[position..self.position].to_string()
+    }
+
+    fn read_number(&mut self) -> i64 {
+        let position = self.position;
+        while let Some(c) = self.current_char {
+            if c.is_digit(10) {
+                self.read_char();
+            } else {
+                break;
+            }
         }
+        self.input[position..self.position].parse().unwrap()
+    }
+
+    pub fn next_token(&mut self) -> Token {
+        self.skip_whitespace();
+
+        let token = match self.current_char {
+            Some('=') => Token::Equals,
+            Some('+') => Token::Plus,
+            Some(';') => Token::Semicolon,
+            Some(c) => {
+                if c.is_alphabetic() {
+                    let ident = self.read_identifier();
+                    match ident.as_str() {
+                        "let" => Token::Let,
+                        "print" => Token::Print,
+                        _ => Token::Identifier(ident),
+                    }
+                } else if c.is_digit(10) {
+                    Token::Number(self.read_number())
+                } else {
+                    panic!("Unexpected character: {}", c)
+                }
+            }
+            None => Token::EOF,
+        };
+
+        self.read_char();
+        token
     }
 }

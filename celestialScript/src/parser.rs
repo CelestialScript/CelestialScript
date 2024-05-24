@@ -53,17 +53,19 @@ impl Parser {
 
     fn parse_let_statement(&mut self) -> Statement {
         self.next_token(); // Consume 'let'
-        if let Token::Identifier(ref name) = self.current_token {
-            self.next_token(); // Consume identifier
-            self.expect_token(Token::Equals);
-            self.next_token(); // Consume '='
-            let expr = self.parse_expression();
-            self.expect_token(Token::Semicolon);
-            Statement::Let(name.clone(), expr)
-        } else {
-            panic!("Expected identifier, found: {:?}", self.current_token);
-        }
-    }
+        let name = match self.current_token.clone() {
+            Token::Identifier(ref ident) => ident.clone(),
+            _ => {
+                panic!("Expected identifier, found: {:?}", self.current_token);
+            }
+        };
+        self.next_token(); // Consume identifier
+        self.expect_token(Token::Equals);
+        self.next_token(); // Consume '='
+        let expr = self.parse_expression();
+        self.expect_token(Token::Semicolon);
+        Statement::Let(name, expr)
+    }    
 
     fn parse_print_statement(&mut self) -> Statement {
         self.next_token(); // Consume 'print'
@@ -78,14 +80,14 @@ impl Parser {
     }
 
     fn parse_primary(&mut self) -> Expr {
-        match self.current_token {
+        match self.current_token.clone() {
             Token::Number(n) => {
                 self.next_token(); // Consume number
                 Expr::Number(n)
             }
-            Token::Identifier(ref name) => {
+            Token::Identifier(name) => {
                 self.next_token(); // Consume identifier
-                Expr::Identifier(name.clone())
+                Expr::Identifier(name)
             }
             _ => panic!("Unexpected token: {:?}", self.current_token),
         }
@@ -93,14 +95,14 @@ impl Parser {
 
     fn parse_binary_op_rhs(&mut self, precedence: i32, mut left: Expr) -> Expr {
         while let Some(op) = self.current_binary_operator() {
-            let op_precedence = self.get_precedence(op);
+            let op_precedence = self.get_precedence(&op);
             if op_precedence < precedence {
                 return left;
             }
             self.next_token(); // Consume operator
             let mut right = self.parse_primary();
             while let Some(next_op) = self.current_binary_operator() {
-                let next_precedence = self.get_precedence(next_op);
+                let next_precedence = self.get_precedence(&next_op);
                 if op_precedence < next_precedence {
                     right = self.parse_binary_op_rhs(op_precedence + 1, right);
                 } else {
@@ -119,7 +121,7 @@ impl Parser {
         }
     }
 
-    fn get_precedence(&self, op: BinaryOperator) -> i32 {
+    fn get_precedence(&self, op: &BinaryOperator) -> i32 {
         match op {
             BinaryOperator::Plus => 10,
         }
