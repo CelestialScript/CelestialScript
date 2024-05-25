@@ -6,7 +6,7 @@
 
 CelestialScript, commonly abbreviated as CS is a modern and futuristic programming language developed and founded by BwnnyRxbbit and WillsDad007.
 
-This website uses the framwork [Hugo](https://gohugo.io). And CelestialScript is programmed in [Rust](https://www.rust-lang.org).
+CelestialScript is programmed mainly in [Rust](https://www.rust-lang.org).
 
 ## Contributors
 
